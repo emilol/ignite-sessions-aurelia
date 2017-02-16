@@ -1,0 +1,14 @@
+<template>
+    <require from="./session-item"></require>
+
+    <template repeat.for="[day, group] of sessions">
+        <div class="sessions" if.bind="showDay(day)">
+            <div class="row day">
+            <div class="col s12"><h4>${day}</h4></div>
+            </div>
+            <template repeat.for="session of group">
+                <session-item session.bind="session" if.bind="!isOver(session)" class="session"></session-item>
+            </template>
+        </div>
+    </template>
+</template>

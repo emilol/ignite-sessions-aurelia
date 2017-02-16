@@ -1,0 +1,22 @@
+<template>
+    <div class="row">
+        <div class="col m1 s2 push-s10 session-time">${time(session)}</div>
+        <div class="col m9 s12">
+            <div class="session-name"><a click.delegate="toggle(session)" href="#">${session.Name}</a></div>
+            <template repeat.for="speaker of session.Speakers">
+                <a class="chip speaker" if.bind="speaker.Twitterusername" href.bind="twitterUrl(speaker)" target="_new">
+                    <img if.bind="speaker.PhotoPath" src.bind="speaker.PhotoPath" alt="">
+                    ${speaker.Name}
+                    <i class="fa fa-twitter blue-text" aria-hidden="true"></i>
+                </a>
+                <div class="chip speaker" if.bind="!speaker.Twitterusername">
+                    <img if.bind="speaker.PhotoPath" src.bind="speaker.PhotoPath" alt="">
+                    ${speaker.Name}
+                </div>
+            </template>
+            <div if.bind="session.ShowDescription">${session.Description}</div>
+        </div>
+        <div class="col m1 duration grey-text">${session.Details.Duration}</div>
+        <div class="col m1 room grey-text">${session.Schedule.Room}</div>
+    </div>
+</template>
